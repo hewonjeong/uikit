@@ -74,3 +74,16 @@ export const disabled = () => {
     </div>
   )
 }
+
+export const customSized = () => {
+  return (
+    <div css={buttonWrapper}>
+      <div>
+        <Button width="20rem">CUSTOM WIDTH</Button>
+      </div>
+      <div>
+        <Button width="100%">FULL WIDTH</Button>
+      </div>
+    </div>
+  )
+}
