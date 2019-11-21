@@ -1,9 +1,12 @@
 {
   "name": "hewon-uikit",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "module": "dist/index.js",
   "license": "MIT",
   "types": "dist/types/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@storybook/addon-actions": "^5.2.6",
