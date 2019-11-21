@@ -4,24 +4,60 @@ import { css, jsx } from '@emotion/core'
 import ButtonGroup from '../ButtonGroup/ButtonGroup'
 import Button from '../Button/Button'
 
-export type DialogProps = {}
+export type DialogProps = {
+  visible: boolean
+  title?: string
+  description?: string
+  children?: React.ReactNode
+  hideButtons?: boolean
+  cancellable?: boolean
+  cancelText: string
+  confirmText: string
+  onCancel?: () => void
+  onConfirm?: () => void
+}
 
-const Dialog = (props: DialogProps) => {
+const Dialog = ({
+  visible,
+  title,
+  description,
+  hideButtons,
+  cancellable,
+  cancelText,
+  confirmText,
+  children,
+  onCancel,
+  onConfirm
+}: DialogProps) => {
+  if (!visible) return null
+
   return (
     <Fragment>
       <div css={[fullscreen, darkLayer]}></div>
       <div css={[fullscreen, whiteBoxWrapper]}>
         <div css={whiteBox}>
-          <h3>포스트 삭제</h3>
-          <p>포스트를 정말로 삭제하시겠습니까?</p>
-          <ButtonGroup css={{ marginTop: '3rem' }} rightAlign>
-            <Button theme="tertiary">취소</Button>
-            <Button>삭제</Button>
-          </ButtonGroup>
+          {title && <h3>{title}</h3>}
+          {description && <p>{description}</p>}
+          {children}
+          {!hideButtons && (
+            <ButtonGroup css={{ marginTop: '3rem' }} rightAlign>
+              {cancellable && (
+                <Button theme="tertiary" onClick={onCancel}>
+                  {cancelText}
+                </Button>
+              )}
+              <Button onClick={onConfirm}>{confirmText}</Button>
+            </ButtonGroup>
+          )}
         </div>
       </div>
     </Fragment>
   )
+}
+
+Dialog.defaultProps = {
+  cancelText: '취소',
+  confirmText: '확인'
 }
 
 const fullscreen = css`
