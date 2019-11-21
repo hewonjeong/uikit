@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "module": "dist/index.js",
   "license": "MIT",
+  "types": "dist/types/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@storybook/addon-actions": "^5.2.6",
@@ -25,8 +26,10 @@
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 6000",
+    "build-storybook": "build-storybook",
+    "build": "rollup -c",
+    "build:types": "tsc --emitDeclarationOnly"
   },
   "peerDependencies": {
     "@emotion/core": "^10.0.22",
